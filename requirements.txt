@@ -16,6 +16,11 @@ beautifulsoup4>=4.12.0
 
 # Natural Language Processing
 nltk>=3.8.0
+langdetect>=1.0.0
+
+# URL/Domain Analysis
+tldextract>=3.4.0
+python-whois>=0.8.0
 
 # File Analysis
 pefile>=2023.2.0
