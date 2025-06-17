@@ -1,0 +1,47 @@
+{
+    "projectType": "fullstack",
+    "backend": {
+      "language": "python",
+      "framework": "flask",
+      "dependencies": [
+        "flask",
+        "pymongo",
+        "dnspython",
+        "tldextract",
+        "python-whois",
+        "scikit-learn",
+        "joblib",
+        "flask-cors"
+      ]
+    },
+    "frontend": {
+      "language": "html-css-js",
+      "framework": "none",
+      "styleLibrary": "tailwindcss",
+      "dependencies": []
+    },
+    "database": {
+      "type": "mongodb",
+      "provider": "mongodb-atlas",
+      "connectionInstructions": "Use your MongoDB Atlas URI and set it as an environment variable named MONGO_URI"
+    },
+    "features": [
+      "URL güvenlik analizi",
+      "E-posta metni phishing kontrolü",
+      "Dosya adı/uzantı analizi",
+      "Risk skoru hesaplama",
+      "Kullanıcı geçmiş sorgularına erişim",
+      "Günlük güvenlik tavsiyeleri gösterimi"
+    ],
+    "securityNotes": [
+      "Kullanıcı verileri lokal ya da şifrelenmiş şekilde tutulur",
+      "Hiçbir veri 3. parti ile paylaşılmaz",
+      "Yasal sorumluluk reddi kullanıcıya açık şekilde sunulur"
+    ],
+    "uiNotes": [
+      "Mobil uyumlu, sade ve anlaşılır arayüz",
+      "Kullanıcı girişine ihtiyaç duyulmaz (isteğe bağlı)",
+      "Sonuçlar tablo/kart formatında gösterilir"
+    ]
+  }
+  

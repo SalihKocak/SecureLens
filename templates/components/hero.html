@@ -1,0 +1,160 @@
+<!-- Compact Hero Section -->
+<div class="hero-compact relative overflow-hidden">
+    <!-- Background -->
+    <div class="hero-bg absolute inset-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800"></div>
+        <div class="absolute inset-0 bg-black/20"></div>
+        
+        <!-- Subtle Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="floating-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div class="text-center text-white mb-12">
+            <!-- Title -->
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                SecureLens <span class="text-cyan-300">AI Güvenlik Merkezi</span>
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                Gelişmiş yapay zeka ve hibrit analiz sistemiyle siber tehditleri gerçek zamanlı tespit edin
+            </p>
+        </div>
+        
+        <!-- Stats Dashboard -->
+        <div class="hero-dashboard">
+            <!-- Main Stats Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-8">
+                
+                <!-- AI Models Card -->
+                <div class="dashboard-card group">
+                    <div class="card-header">
+                        <div class="card-icon bg-gradient-to-br from-cyan-400 to-blue-500">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="card-title">Aktif AI Modelleri</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-number" data-count="3">0</div>
+                        <div class="card-trend">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span class="text-green-300">Tümü Aktif</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Accuracy Card -->
+                <div class="dashboard-card group">
+                    <div class="card-header">
+                        <div class="card-icon bg-gradient-to-br from-emerald-400 to-green-500">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="card-title">AI Doğruluk Oranı</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-number" data-count="98.7">0<span class="card-unit">%</span></div>
+                        <div class="card-trend">
+                            <i class="fas fa-arrow-up text-green-400"></i>
+                            <span class="text-green-300">Yüksek Performans</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Total Analysis Card -->
+                <div class="dashboard-card group">
+                    <div class="card-header">
+                        <div class="card-icon bg-gradient-to-br from-purple-400 to-indigo-500">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-title">Toplam Analiz</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-number" data-count="{{ stats.total_analyses }}">0</div>
+                        <div class="card-trend">
+                            <i class="fas fa-arrow-up text-green-400"></i>
+                            <span class="text-green-300">Gerçek Zamanlı</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Status Badges -->
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="status-badge">
+                    <div class="status-dot bg-green-400"></div>
+                    <span>MongoDB Atlas Aktif</span>
+                </div>
+                <div class="status-badge">
+                    <div class="status-dot bg-cyan-400"></div>
+                    <span>{{ stats.total_analyses }} Analiz Tamamlandı</span>
+                </div>
+                <div class="status-badge">
+                    <div class="status-dot bg-purple-400"></div>
+                    <span>Son Güncelleme: {{ stats.last_updated }}</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Large Animated Logo (Right Side) -->
+        <div class="hero-logo">
+            <div class="hero-logo-container">
+                <!-- Ana Logo Çemberi -->
+                <div class="hero-logo-circle">
+                    
+                    <!-- Merkezi Göz -->
+                    <div class="hero-logo-eye">
+                        <div class="eye-outer">
+                            <div class="eye-inner">
+                                <div class="eye-pupil"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dönen Güvenlik Halkaları -->
+                    <div class="hero-logo-rings">
+                        <div class="logo-ring ring-1"></div>
+                        <div class="logo-ring ring-2"></div>
+                        <div class="logo-ring ring-3"></div>
+                    </div>
+                    
+                    <!-- AI Parçacıkları -->
+                    <div class="hero-logo-particles">
+                        <div class="particle particle-1"></div>
+                        <div class="particle particle-2"></div>
+                        <div class="particle particle-3"></div>
+                        <div class="particle particle-4"></div>
+                        <div class="particle particle-5"></div>
+                        <div class="particle particle-6"></div>
+                    </div>
+                    
+                    <!-- İç Işık Efekti -->
+                    <div class="hero-logo-glow"></div>
+                </div>
+                
+                <!-- Dış Radar Halkaları -->
+                <div class="hero-radar-rings">
+                    <div class="radar-ring radar-1"></div>
+                    <div class="radar-ring radar-2"></div>
+                    <div class="radar-ring radar-3"></div>
+                    <div class="radar-ring radar-4"></div>
+                </div>
+                
+                <!-- Güvenlik Rozeti -->
+                <div class="hero-security-badge">
+                    <i class="fas fa-shield-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

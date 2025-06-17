@@ -1,0 +1,139 @@
+<nav class="navbar backdrop-blur-md bg-white/90 shadow-xl border-b border-white/20 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            
+            <!-- Animasyonlu Logo Section -->
+            <div class="flex items-center group cursor-pointer">
+                <!-- Güvenlik Radar Göz Logo Container -->
+                <div class="relative logo-container">
+                    <!-- Ana Logo Çemberi -->
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl transform transition-all duration-700 group-hover:scale-110 group-hover:rotate-12 relative overflow-hidden">
+                        
+                        <!-- Merkezi Göz -->
+                        <div class="relative z-10">
+                            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-inner">
+                                <div class="w-5 h-5 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center">
+                                    <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Dönen Güvenlik Halkaları -->
+                        <div class="absolute inset-1 border-2 border-white/30 rounded-full animate-spin-slow"></div>
+                        <div class="absolute inset-2 border border-white/20 rounded-full animate-spin-reverse"></div>
+                        
+                        <!-- AI Parçacıkları -->
+                        <div class="absolute top-1 right-2 w-1 h-1 bg-cyan-300 rounded-full animate-ping"></div>
+                        <div class="absolute bottom-2 left-1 w-1 h-1 bg-purple-300 rounded-full animate-ping animation-delay-300"></div>
+                        <div class="absolute top-3 left-2 w-0.5 h-0.5 bg-blue-200 rounded-full animate-ping animation-delay-600"></div>
+                        <div class="absolute bottom-1 right-3 w-0.5 h-0.5 bg-indigo-200 rounded-full animate-ping animation-delay-900"></div>
+                        
+                        <!-- İç Işık Efekti -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent rounded-full transform rotate-45"></div>
+                    </div>
+                    
+                    <!-- Dış Radar Halkaları -->
+                    <div class="absolute inset-0 w-16 h-16">
+                        <div class="absolute inset-0 border border-cyan-400/20 rounded-full animate-ping animation-delay-0"></div>
+                        <div class="absolute inset-0 border border-blue-400/15 rounded-full animate-ping animation-delay-1000 scale-110"></div>
+                        <div class="absolute inset-0 border border-purple-400/10 rounded-full animate-ping animation-delay-2000 scale-125"></div>
+                    </div>
+                    
+                    <!-- Ana Glow Efekti -->
+                    <div class="absolute inset-0 w-16 h-16 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-full blur-lg opacity-40 group-hover:opacity-70 transition-opacity duration-500 animate-pulse-slow"></div>
+                    
+                    <!-- Güvenlik Rozeti -->
+                    <div class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">
+                        <i class="fas fa-shield-check text-white text-xs"></i>
+                    </div>
+                </div>
+                
+                <!-- Logo Metni -->
+                <div class="ml-4">
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        SecureLens
+                    </h1>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-medium text-gray-500">AI Güvenlik Analizi</span>
+                        <!-- AI Status Indicator -->
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <span class="ml-1 text-xs text-green-600 font-medium">Aktif</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center space-x-6">
+                <!-- Dynamic Home Button (analyze + dashboard pages) -->
+                <a href="/" class="nav-home-btn hidden" id="navHomeBtn" onclick="showPageLoading()">
+                    <i class="fas fa-home"></i>
+                    <span>Ana Sayfa</span>
+                </a>
+                
+                <!-- Analyze Button (home page only) -->
+                <a href="/analyze" class="nav-btn" id="navAnalyzeBtn" onclick="showPageLoading()">
+                    <i class="fas fa-search"></i>
+                    <span>Analiz Et</span>
+                </a>
+                
+                <!-- Special Dashboard Button (home + analyze pages) -->
+                <a href="/dashboard" class="nav-dashboard-btn" id="navDashboardBtn" onclick="showPageLoading()">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                
+                <!-- Live Feed Button (Ana sayfa only) -->
+                <button class="nav-btn hidden" id="navLiveFeedBtn" onclick="showLiveFeedModal()">
+                    <i class="fas fa-rss"></i>
+                    <span>Canlı Feed</span>
+                </button>
+                
+                <!-- Guide Button (Tüm sayfalar) -->
+                <button class="nav-btn" id="navGuideBtn" onclick="showGuideModal()">
+                    <i class="fas fa-book"></i>
+                    <span>Rehber</span>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button onclick="toggleMobileMenu()" class="mobile-menu-btn group">
+                    <div class="w-6 h-6 relative">
+                        <span class="hamburger-line top-0 group-hover:rotate-45 group-hover:top-2"></span>
+                        <span class="hamburger-line top-2 group-hover:opacity-0"></span>
+                        <span class="hamburger-line top-4 group-hover:-rotate-45 group-hover:top-2"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden pb-6 pt-4 border-t border-gray-200/50">
+            <div class="space-y-3">
+                <!-- Dynamic Mobile Buttons -->
+                <a href="/" class="mobile-nav-button hidden" id="mobileHomeBtn" onclick="showPageLoading()">
+                    <i class="fas fa-home mr-3"></i>
+                    <span>Ana Sayfa</span>
+                </a>
+                <a href="/analyze" class="mobile-nav-button" id="mobileAnalyzeBtn" onclick="showPageLoading()">
+                    <i class="fas fa-search mr-3"></i>
+                    <span>Analiz Et</span>
+                </a>
+                <a href="/dashboard" class="mobile-dashboard-btn" id="mobileDashboardBtn" onclick="showPageLoading()">
+                    <i class="fas fa-chart-line mr-3"></i>
+                    <span>Dashboard</span>
+                </a>
+                <button onclick="showLiveFeedModal()" class="mobile-nav-button hidden" id="mobileLiveFeedBtn">
+                    <i class="fas fa-rss mr-3"></i>
+                    <span>Canlı Feed</span>
+                </button>
+                <button onclick="showGuideModal()" class="mobile-nav-button" id="mobileGuideBtn">
+                    <i class="fas fa-book-open mr-3"></i>
+                    <span>Rehber</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav> 

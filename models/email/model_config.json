@@ -1,0 +1,5 @@
+{
+  "best_threshold": 0.3,
+  "model_path": "models/email/email_detection_model.pt",
+  "updated_at": "2025-06-10T03:28:42.627508"
+}

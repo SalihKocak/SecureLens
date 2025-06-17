@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}SecureLens - AI Güvenlik Analizi{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    {% include 'components/hero.html' %}
+    
+    <!-- Analysis Statistics Cards -->
+    {% include 'components/analysis-cards.html' %}
+    
+    <!-- Footer -->
+    {% include 'components/footer.html' %}
+    
+    <!-- Live Feed Modal -->
+    {% include 'components/live_feed_modal.html' %}
+
+<!-- Guide Modal now in base.html - Available globally -->
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/stats.js') }}?v=1.0.0" defer></script>
+    <script src="{{ url_for('static', filename='js/live_feed.js') }}?v=1.0.0" defer></script>
+    <script>
+        // Initialize page on load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('SecureLens Loaded!');
+            
+            // Show/hide appropriate nav buttons
+            showNavigationButtons('home');
+        });
+
+        // Navigation functions
+        function showNavigationButtons(currentPage) {
+            const homeBtn = document.getElementById('navHomeBtn');
+            const analyzeBtn = document.getElementById('navAnalyzeBtn');
+            const dashboardBtn = document.getElementById('navDashboardBtn');
+            const liveFeedBtn = document.getElementById('navLiveFeedBtn');
+            const guideBtn = document.getElementById('navGuideBtn');
+            
+            const mobileHomeBtn = document.getElementById('mobileHomeBtn');
+            const mobileAnalyzeBtn = document.getElementById('mobileAnalyzeBtn');
+            const mobileDashboardBtn = document.getElementById('mobileDashboardBtn');
+            const mobileLiveFeedBtn = document.getElementById('mobileLiveFeedBtn');
+            const mobileGuideBtn = document.getElementById('mobileGuideBtn');
+            
+            // Hide all dynamic buttons first
+            if (homeBtn) homeBtn.classList.add('hidden');
+            if (analyzeBtn) analyzeBtn.classList.add('hidden');
+            if (dashboardBtn) dashboardBtn.classList.add('hidden');
+            if (liveFeedBtn) liveFeedBtn.classList.add('hidden');
+            if (guideBtn) guideBtn.classList.add('hidden');
+            
+            if (mobileHomeBtn) mobileHomeBtn.classList.add('hidden');
+            if (mobileAnalyzeBtn) mobileAnalyzeBtn.classList.add('hidden');
+            if (mobileDashboardBtn) mobileDashboardBtn.classList.add('hidden');
+            if (mobileLiveFeedBtn) mobileLiveFeedBtn.classList.add('hidden');
+            if (mobileGuideBtn) mobileGuideBtn.classList.add('hidden');
+            
+            // Show appropriate buttons based on current page
+            if (currentPage === 'home') {
+                // Ana sayfada tüm butonları göster
+                if (analyzeBtn) analyzeBtn.classList.remove('hidden');
+                if (dashboardBtn) dashboardBtn.classList.remove('hidden');
+                if (liveFeedBtn) liveFeedBtn.classList.remove('hidden');
+                if (guideBtn) guideBtn.classList.remove('hidden');
+                
+                if (mobileAnalyzeBtn) mobileAnalyzeBtn.classList.remove('hidden');
+                if (mobileDashboardBtn) mobileDashboardBtn.classList.remove('hidden');
+                if (mobileLiveFeedBtn) mobileLiveFeedBtn.classList.remove('hidden');
+                if (mobileGuideBtn) mobileGuideBtn.classList.remove('hidden');
+            }
+        }
+    </script>
+{% endblock %} 

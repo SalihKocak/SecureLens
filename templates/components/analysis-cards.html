@@ -1,0 +1,275 @@
+<!-- Analysis Statistics Cards -->
+<div class="analysis-stats-section py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                Analiz <span class="text-blue-600">İstatistikleri</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                SecureLens AI sistemi tarafından gerçekleştirilen güvenlik analizlerinin özeti
+            </p>
+        </div>
+
+        <!-- Statistics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- URL Analysis Stats -->
+            <div class="stats-card-compact group">
+                <div class="stats-icon-compact bg-gradient-to-br from-blue-500 to-blue-600">
+                    <i class="fas fa-globe"></i>
+                </div>
+                
+                <div class="stats-content-compact">
+                    <div class="stats-number-compact" data-count="{{ stats.url_count }}">0</div>
+                    <div class="stats-label-compact">Analiz Edilen URL</div>
+                    
+                    <div class="stats-trend-compact">
+                        <span class="trend-up-compact">
+                            <i class="fas fa-arrow-up"></i> {{ stats.url_trend }}
+                        </span>
+                        <div class="trend-split">
+                            <span class="text-green-600">{{ stats.url_safe }} güvenli</span>
+                            <span class="text-red-500">{{ stats.url_risky }} riskli</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Analysis Stats -->
+            <div class="stats-card-compact group">
+                <div class="stats-icon-compact bg-gradient-to-br from-red-500 to-red-600">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                
+                <div class="stats-content-compact">
+                    <div class="stats-number-compact" data-count="{{ stats.email_count }}">0</div>
+                    <div class="stats-label-compact">Analiz Edilen E-posta</div>
+                    
+                    <div class="stats-trend-compact">
+                        <span class="trend-up-compact">
+                            <i class="fas fa-arrow-up"></i> {{ stats.email_trend }}
+                        </span>
+                        <div class="trend-split">
+                            <span class="text-green-600">{{ stats.email_safe }} güvenli</span>
+                            <span class="text-red-500">{{ stats.email_risky }} riskli</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Analysis Stats -->
+            <div class="stats-card-compact group">
+                <div class="stats-icon-compact bg-gradient-to-br from-green-500 to-green-600">
+                    <i class="fas fa-file-shield"></i>
+                </div>
+                
+                <div class="stats-content-compact">
+                    <div class="stats-number-compact" data-count="{{ stats.file_count }}">0</div>
+                    <div class="stats-label-compact">Analiz Edilen Dosya</div>
+                    
+                    <div class="stats-trend-compact">
+                        <span class="trend-up-compact">
+                            <i class="fas fa-arrow-up"></i> {{ stats.file_trend }}
+                        </span>
+                        <div class="trend-split">
+                            <span class="text-green-600">{{ stats.file_safe }} güvenli</span>
+                            <span class="text-red-500">{{ stats.file_risky }} riskli</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- High Risk Total Stats -->
+            <div class="stats-card-compact stats-card-danger-compact group">
+                <div class="stats-icon-compact bg-gradient-to-br from-orange-500 to-red-600">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                
+                <div class="stats-content-compact">
+                    <div class="stats-number-compact stats-number-danger-compact" data-count="{{ stats.high_risk_count }}">0</div>
+                    <div class="stats-label-compact">Toplam Yüksek Risk</div>
+                    
+                    <div class="stats-trend-compact">
+                        <span class="trend-down-compact">
+                            <i class="fas fa-arrow-down"></i> {{ stats.risk_trend }}
+                        </span>
+                        <div class="trend-split">
+                            <span class="text-red-600">{{ stats.url_risky }} URL</span>
+                            <span class="text-red-600">{{ stats.email_risky }} E-posta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="mt-8 text-center">
+            <div class="inline-flex items-center space-x-3 bg-gray-50 rounded-full px-4 py-2 text-sm">
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="text-gray-700 font-medium">Gerçek zamanlı güncelleme</span>
+                <span class="text-gray-500">•</span>
+                <span class="text-gray-600">Son güncelleme: {{ stats.last_updated }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Analysis Actions -->
+<div class="quick-analysis-section py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Hızlı <span class="text-blue-600">Güvenlik Analizi</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                AI destekli 3 katmanlı güvenlik sistemi ile URL, e-posta ve dosyalarınızı anında analiz edin
+            </p>
+        </div>
+
+        <!-- Quick Action Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- URL Analysis Card -->
+            <div class="quick-action-card group" data-analysis-type="url">
+                <div class="quick-action-header">
+                    <div class="quick-action-icon bg-gradient-to-br from-blue-500 to-blue-600">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="quick-action-pulse bg-blue-500"></div>
+                </div>
+                
+                <div class="quick-action-content">
+                    <h3 class="quick-action-title">URL Analizi</h3>
+                    <p class="quick-action-description">
+                        Web sitelerinin güvenlik durumunu kontrol edin. Phishing, malware ve şüpheli içerik tespiti.
+                    </p>
+                    
+                    <div class="quick-action-features">
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt text-green-500"></i>
+                            <span>Gerçek zamanlı tarama</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-brain text-purple-500"></i>
+                            <span>AI destekli analiz</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-bolt text-yellow-500"></i>
+                            <span>Hızlı sonuç</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-action-footer">
+                    <button class="quick-action-btn" onclick="startAnalysis('url')">
+                        <span>URL Analiz Et</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Email Analysis Card -->
+            <div class="quick-action-card group" data-analysis-type="email">
+                <div class="quick-action-header">
+                    <div class="quick-action-icon bg-gradient-to-br from-red-500 to-red-600">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="quick-action-pulse bg-red-500"></div>
+                </div>
+                
+                <div class="quick-action-content">
+                    <h3 class="quick-action-title">E-posta Analizi</h3>
+                    <p class="quick-action-description">
+                        E-posta içeriğini analiz edin. Spam, phishing ve zararlı ek tespiti.
+                    </p>
+                    
+                    <div class="quick-action-features">
+                        <div class="feature-item">
+                            <i class="fas fa-search text-blue-500"></i>
+                            <span>İçerik taraması</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-user-shield text-green-500"></i>
+                            <span>Gönderen doğrulama</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-link text-orange-500"></i>
+                            <span>Link kontrolü</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-action-footer">
+                    <button class="quick-action-btn" onclick="startAnalysis('email')">
+                        <span>E-posta Analiz Et</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- File Analysis Card -->
+            <div class="quick-action-card group" data-analysis-type="file">
+                <div class="quick-action-header">
+                    <div class="quick-action-icon bg-gradient-to-br from-green-500 to-green-600">
+                        <i class="fas fa-file-shield"></i>
+                    </div>
+                    <div class="quick-action-pulse bg-green-500"></div>
+                </div>
+                
+                <div class="quick-action-content">
+                    <h3 class="quick-action-title">Dosya Analizi</h3>
+                    <p class="quick-action-description">
+                        Dosyalarınızı güvenlik açısından kontrol edin. Malware, virüs ve zararlı kod tespiti.
+                    </p>
+                    
+                    <div class="quick-action-features">
+                        <div class="feature-item">
+                            <i class="fas fa-virus text-red-500"></i>
+                            <span>Malware taraması</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-file-code text-blue-500"></i>
+                            <span>Kod analizi</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-fingerprint text-purple-500"></i>
+                            <span>Hash kontrolü</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-action-footer">
+                    <button class="quick-action-btn" onclick="startAnalysis('file')">
+                        <span>Dosya Analiz Et</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Info -->
+        <div class="mt-12 text-center">
+            <div class="inline-flex items-center space-x-6 bg-white rounded-2xl px-8 py-4 shadow-lg">
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="text-sm font-medium text-gray-700">3 AI Model Aktif</span>
+                </div>
+                <div class="w-px h-6 bg-gray-300"></div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-clock text-blue-500"></i>
+                    <span class="text-sm text-gray-600">Ortalama analiz süresi: 2-5 saniye</span>
+                </div>
+                <div class="w-px h-6 bg-gray-300"></div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-chart-line text-purple-500"></i>
+                    <span class="text-sm text-gray-600">%98.5 doğruluk oranı</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+</div> 

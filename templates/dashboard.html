@@ -1,0 +1,1045 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - SecureLens{% endblock %}
+
+{% block content %}
+        <!-- Dashboard Hero Section -->
+        <div class="dashboard-hero relative overflow-hidden">
+            <!-- Background -->
+            <div class="hero-bg absolute inset-0">
+                <div class="absolute inset-0 bg-gradient-to-br from-slate-800 via-blue-900 to-indigo-900"></div>
+                <div class="absolute inset-0 bg-black/30"></div>
+                
+                <!-- Animated Grid Pattern -->
+                <div class="absolute inset-0 opacity-20">
+                    <div class="grid-pattern"></div>
+                </div>
+                
+                <!-- Floating Security Elements -->
+                <div class="security-orbs">
+                    <div class="security-orb orb-1">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="security-orb orb-2">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="security-orb orb-3">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="security-orb orb-4">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Left Side - Title and Info -->
+                    <div class="text-white">
+                        <div class="mb-6">
+                            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                                <i class="fas fa-chart-line mr-2"></i>
+                                Güvenlik Analiz Merkezi
+                            </span>
+                        </div>
+                        
+                        <h1 class="text-4xl font-bold mb-4">
+                            Güvenlik Kontrol 
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
+                                Dashboard
+                            </span>
+                        </h1>
+                        
+                        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+                            Gelişmiş AI algoritmaları ile gerçek zamanlı tehdit tespiti, 
+                            sistem durumu izleme ve güvenlik analizlerinin merkezi kontrol paneli.
+                        </p>
+                        
+                        <!-- Feature List -->
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                                <span class="text-slate-300">Gerçek zamanlı tehdit tespiti ve analizi</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                                <span class="text-slate-300">AI destekli güvenlik skorlama sistemi</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                                <span class="text-slate-300">Kapsamlı risk değerlendirmesi</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                                <span class="text-slate-300">Detaylı raporlama ve görselleştirme</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Actions -->
+                        <div class="flex flex-wrap gap-4">
+                            <button onclick="location.href='/analyze'" class="btn-primary-hero">
+                                <i class="fas fa-search mr-2"></i>
+                                Yeni Analiz Başlat
+                            </button>
+                            <button onclick="scrollToSection('charts')" class="btn-secondary-hero">
+                                <i class="fas fa-chart-bar mr-2"></i>
+                                Raporları Görüntüle
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Live Stats Dashboard -->
+                    <div class="dashboard-live-stats">
+                        <!-- Main Stats Grid -->
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <!-- Active Scans -->
+                            <div class="live-stat-card">
+                                <div class="live-stat-icon bg-gradient-to-br from-green-400 to-emerald-500">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="live-stat-content">
+                                    <div class="live-stat-number" id="activeScanCount">{{ stats.total_analyses or 0 }}</div>
+                                    <div class="live-stat-label">Aktif Tarama</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Threats Detected -->
+                            <div class="live-stat-card">
+                                <div class="live-stat-icon bg-gradient-to-br from-red-400 to-pink-500">
+                                    <i class="fas fa-bug"></i>
+                                </div>
+                                <div class="live-stat-content">
+                                    <div class="live-stat-number" id="threatCount">{{ stats.high_risk_count or 0 }}</div>
+                                    <div class="live-stat-label">Tespit Edilen Tehdit</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Security Score -->
+                            <div class="live-stat-card">
+                                <div class="live-stat-icon bg-gradient-to-br from-blue-400 to-indigo-500">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="live-stat-content">
+                                    <div class="live-stat-number">95<span class="live-stat-unit">%</span></div>
+                                    <div class="live-stat-label">Güvenlik Skoru</div>
+                                </div>
+                            </div>
+                            
+                            <!-- System Health -->
+                            <div class="live-stat-card" title="Sistem sağlığı: Veritabanı (%30), AI Motor (%40) ve Analiz Performansı (%30) bileşenlerinin genel durumu.">
+                                <div class="live-stat-icon bg-gradient-to-br from-purple-400 to-violet-500">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <div class="live-stat-content">
+                                    <div class="live-stat-number">{{ stats.system_health or 95 }}<span class="live-stat-unit">%</span></div>
+                                    <div class="live-stat-label">Sistem Sağlığı</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- System Status Bar -->
+                        <div class="system-status-bar">
+                            <div class="system-status-header">
+                                <h4 class="text-white font-semibold">Sistem Durumu</h4>
+                                <div class="status-indicator">
+                                    <div class="status-dot bg-green-400 animate-pulse"></div>
+                                    <span class="text-green-300 text-sm">Tüm Sistemler Çevrimiçi</span>
+                                </div>
+                            </div>
+                            
+                            <div class="system-services">
+                                <div class="service-item">
+                                    <span class="service-name">AI Analiz Motoru</span>
+                                    <div class="service-status active">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="service-item">
+                                    <span class="service-name">Veritabanı Bağlantısı</span>
+                                    <div class="service-status active">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="service-item">
+                                    <span class="service-name">Gerçek Zamanlı İzleme</span>
+                                    <div class="service-status active">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Animated Security Scanner -->
+            <div class="security-scanner">
+                <div class="scanner-line"></div>
+            </div>
+        </div>
+
+
+
+    <!-- Filter Controls Section -->
+    <div class="filter-section">
+        <div class="filter-container">
+            <div class="filter-card">
+                <h3 class="filter-title">
+                    <i class="fas fa-filter"></i>
+                    Grafik Filtreleri
+                </h3>
+                <div class="filter-grid">
+                    <!-- Date Range -->
+                    <div class="filter-group">
+                        <label class="filter-label">Tarih Aralığı</label>
+                        <select id="dateRange" class="filter-select">
+                            <option value="7">Son 7 Gün</option>
+                            <option value="30" selected>Son 30 Gün</option>
+                            <option value="90">Son 3 Ay</option>
+                            <option value="365">Son 1 Yıl</option>
+                            <option value="all">Tüm Zamanlar</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Analysis Type -->
+                    <div class="filter-group">
+                        <label class="filter-label">Analiz Türü</label>
+                        <select id="analysisType" class="filter-select">
+                            <option value="all">Tümü</option>
+                            <option value="url">URL</option>
+                            <option value="email">E-posta</option>
+                            <option value="file">Dosya</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Risk Level -->
+                    <div class="filter-group">
+                        <label class="filter-label">Risk Seviyesi</label>
+                        <select id="riskLevel" class="filter-select">
+                            <option value="all">Tümü</option>
+                            <option value="safe">Güvenli</option>
+                            <option value="low">Düşük Risk</option>
+                            <option value="medium">Orta Risk</option>
+                            <option value="high">Yüksek Risk</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Filter Action Buttons -->
+                    <div class="filter-group">
+                        <label class="filter-label">&nbsp;</label>
+                        <div class="filter-buttons">
+                            <button id="applyFilters" class="filter-apply-btn">
+                                <i class="fas fa-search"></i>
+                                Filtrele
+                            </button>
+                            <button id="resetFilters" class="filter-reset-btn">
+                                <i class="fas fa-redo"></i>
+                                Sıfırla
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div id="charts" class="charts-section">
+        <div class="charts-container">
+            <div class="charts-grid">
+                <!-- Analysis Types Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Analiz Türleri</h3>
+                        <div class="chart-subtitle">Tür bazında dağılım</div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="analysisTypesChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Risk Levels Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Risk Seviyeleri</h3>
+                        <div class="chart-subtitle">Güvenlik durumu</div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="riskLevelsChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Timeline Chart (Wide) -->
+                <div class="chart-card chart-wide">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Zaman Çizelgesi</h3>
+                        <div class="chart-subtitle">Günlük analiz trendi</div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Threat Detection Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Tehdit Tespiti</h3>
+                        <div class="chart-subtitle">Tespit edilen tehditler</div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="threatDetectionChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- System Health Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Sistem Sağlığı</h3>
+                        <div class="chart-subtitle">Genel sistem durumu</div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="systemHealthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Statistics -->
+    <div class="quick-stats-section">
+        <div class="quick-stats-container">
+            <h2 class="quick-stats-title">Hızlı İstatistikler</h2>
+            <div class="quick-stats-grid">
+                <!-- URL Stats -->
+                <div class="quick-stat-card">
+                    <div class="quick-stat-header">
+                        <div class="quick-stat-icon icon-blue">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3 class="quick-stat-title">URL Analizleri</h3>
+                    </div>
+                    <div class="quick-stat-content">
+                        <div class="stat-row">
+                            <span class="stat-label">Güvenli:</span>
+                            <span class="stat-value safe" id="urlSafe">{{ stats.url_safe | default(0) }}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Riskli:</span>
+                            <span class="stat-value risky" id="urlRisky">{{ stats.url_risky | default(0) }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email Stats -->
+                <div class="quick-stat-card">
+                    <div class="quick-stat-header">
+                        <div class="quick-stat-icon icon-purple">
+                            <i class="fas fa-at"></i>
+                        </div>
+                        <h3 class="quick-stat-title">E-posta Analizleri</h3>
+                    </div>
+                    <div class="quick-stat-content">
+                        <div class="stat-row">
+                            <span class="stat-label">Güvenli:</span>
+                            <span class="stat-value safe" id="emailSafe">{{ stats.email_safe | default(0) }}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Riskli:</span>
+                            <span class="stat-value risky" id="emailRisky">{{ stats.email_risky | default(0) }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- File Stats -->
+                <div class="quick-stat-card">
+                    <div class="quick-stat-header">
+                        <div class="quick-stat-icon icon-orange">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="quick-stat-title">Dosya Analizleri</h3>
+                    </div>
+                    <div class="quick-stat-content">
+                        <div class="stat-row">
+                            <span class="stat-label">Güvenli:</span>
+                            <span class="stat-value safe" id="fileSafe">{{ stats.file_safe | default(0) }}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Riskli:</span>
+                            <span class="stat-value risky" id="fileRisky">{{ stats.file_risky | default(0) }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Dashboard Data -->
+    <script type="application/json" id="dashboard-data">
+        {
+            "url_count": {{ stats.url_count | default(125) | tojson }},
+            "email_count": {{ stats.email_count | default(89) | tojson }},
+            "file_count": {{ stats.file_count | default(67) | tojson }},
+            "safe_count": {{ stats.safe_count | default(234) | tojson }},
+            "low_risk": {{ stats.low_risk | default(32) | tojson }},
+            "medium_risk": {{ stats.medium_risk | default(12) | tojson }},
+            "high_risk": {{ stats.high_risk | default(3) | tojson }},
+            "timeline_labels": {{ stats.timeline_labels | default(['1 Haf', '2 Haf', '3 Haf', '4 Haf', '5 Haf', '6 Haf', '7 Haf']) | tojson }},
+            "timeline_data": {{ stats.timeline_data | default([12, 19, 8, 15, 22, 18, 25]) | tojson }},
+            "malware_detected": {{ stats.malware_detected | default(5) | tojson }},
+            "phishing_detected": {{ stats.phishing_detected | default(8) | tojson }},
+            "spam_detected": {{ stats.spam_detected | default(12) | tojson }},
+            "malicious_links": {{ stats.malicious_links | default(3) | tojson }},
+            "system_health": {{ stats.system_health | default(94) | tojson }}
+        }
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        console.log('Dashboard JavaScript loaded!');
+        
+        // Dashboard data and charts
+        let dashboardCharts = {};
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit for navigation to load, then configure
+            setTimeout(() => {
+                configureDashboardNavigation();
+            }, 100);
+            
+            initializeCharts();
+            initializeFilters();
+            updateSystemHealth(); // Set initial health colors
+            startAutoRefresh();
+        });
+        
+        // Configure navigation buttons for dashboard page
+        function configureDashboardNavigation() {
+            console.log('Configuring dashboard navigation...');
+            
+            // Show home and analyze buttons, hide dashboard button
+            const navHomeBtn = document.getElementById('navHomeBtn');
+            const navAnalyzeBtn = document.getElementById('navAnalyzeBtn');
+            const navDashboardBtn = document.getElementById('navDashboardBtn');
+            
+            console.log('Nav buttons found:', {
+                home: !!navHomeBtn,
+                analyze: !!navAnalyzeBtn,
+                dashboard: !!navDashboardBtn
+            });
+            
+            // Mobile buttons
+            const mobileHomeBtn = document.getElementById('mobileHomeBtn');
+            const mobileAnalyzeBtn = document.getElementById('mobileAnalyzeBtn');
+            const mobileDashboardBtn = document.getElementById('mobileDashboardBtn');
+            
+            // Show home and analyze buttons
+            if (navHomeBtn) {
+                console.log('Showing home button');
+                navHomeBtn.classList.remove('hidden');
+                navHomeBtn.style.display = 'flex'; // Force display
+            } else {
+                console.warn('Home button not found!');
+            }
+            
+            if (navAnalyzeBtn) {
+                console.log('Showing analyze button');
+                navAnalyzeBtn.classList.remove('hidden');
+                navAnalyzeBtn.style.display = 'flex'; // Force display
+            } else {
+                console.warn('Analyze button not found!');
+            }
+            
+            // Hide dashboard button
+            if (navDashboardBtn) {
+                console.log('Hiding dashboard button');
+                navDashboardBtn.style.display = 'none';
+            }
+            
+            // Mobile navigation
+            if (mobileHomeBtn) {
+                mobileHomeBtn.classList.remove('hidden');
+                mobileHomeBtn.style.display = 'block';
+            }
+            if (mobileAnalyzeBtn) {
+                mobileAnalyzeBtn.classList.remove('hidden');
+                mobileAnalyzeBtn.style.display = 'block';
+            }
+            if (mobileDashboardBtn) {
+                mobileDashboardBtn.style.display = 'none';
+            }
+            
+            console.log('Navigation configuration completed');
+        }
+
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+        
+        // Initialize all charts with real data
+        async function initializeCharts() {
+            try {
+                const data = await fetchDashboardData();
+                createCharts(data);
+            } catch (error) {
+                console.error('Error initializing charts:', error);
+                // Fallback to mock data
+                const mockData = getMockData();
+                createChartsFromMockData(mockData);
+            }
+        }
+
+        // Fetch real dashboard data
+        async function fetchDashboardData() {
+            const dateRange = document.getElementById('dateRange').value;
+            const analysisType = document.getElementById('analysisType').value;
+            const riskLevel = document.getElementById('riskLevel').value;
+            
+            const params = new URLSearchParams({
+                dateRange: dateRange,
+                analysisType: analysisType,
+                riskLevel: riskLevel
+            });
+            
+            const response = await fetch(`/api/dashboard-data?${params}`);
+            const result = await response.json();
+            
+            if (!result.success) {
+                throw new Error(result.error || 'API error');
+            }
+            
+            console.log('Dashboard data loaded:', result.filters_applied);
+            return result.data;
+        }
+
+        // Create charts with real data
+        function createCharts(data) {
+            // Analysis Types Pie Chart
+            const analysisTypesCtx = document.getElementById('analysisTypesChart').getContext('2d');
+            if (dashboardCharts.analysisTypes) {
+                dashboardCharts.analysisTypes.destroy();
+            }
+            dashboardCharts.analysisTypes = new Chart(analysisTypesCtx, {
+                type: 'pie',
+                data: {
+                    labels: data.analysisTypes.labels,
+                    datasets: [{
+                        data: data.analysisTypes.data,
+                        backgroundColor: data.analysisTypes.colors,
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Risk Levels Doughnut Chart
+            const riskLevelsCtx = document.getElementById('riskLevelsChart').getContext('2d');
+            if (dashboardCharts.riskLevels) {
+                dashboardCharts.riskLevels.destroy();
+            }
+            dashboardCharts.riskLevels = new Chart(riskLevelsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.riskLevels.labels,
+                    datasets: [{
+                        data: data.riskLevels.data,
+                        backgroundColor: data.riskLevels.colors,
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Timeline Line Chart
+            const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+            if (dashboardCharts.timeline) {
+                dashboardCharts.timeline.destroy();
+            }
+            dashboardCharts.timeline = new Chart(timelineCtx, {
+                type: 'line',
+                data: {
+                    labels: data.timeline.labels,
+                    datasets: data.timeline.datasets.map(dataset => ({
+                        label: dataset.label,
+                        data: dataset.data,
+                        borderColor: dataset.color,
+                        backgroundColor: dataset.color + '20',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0.4
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+            
+            // Threat Detection Bar Chart
+            const threatCtx = document.getElementById('threatDetectionChart').getContext('2d');
+            if (dashboardCharts.threatDetection) {
+                dashboardCharts.threatDetection.destroy();
+            }
+            dashboardCharts.threatDetection = new Chart(threatCtx, {
+                type: 'bar',
+                data: {
+                    labels: data.threats.labels,
+                    datasets: [{
+                        label: 'Tespit Sayısı',
+                        data: data.threats.data,
+                        backgroundColor: data.threats.colors,
+                        borderWidth: 0,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            // System Health Gauge Chart (using doughnut)
+            const healthCtx = document.getElementById('systemHealthChart').getContext('2d');
+            const systemHealth = data.systemHealth.percentage || 0;
+            if (dashboardCharts.systemHealth) {
+                dashboardCharts.systemHealth.destroy();
+            }
+            dashboardCharts.systemHealth = new Chart(healthCtx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [systemHealth, 100 - systemHealth],
+                        backgroundColor: [
+                            systemHealth >= 90 ? '#10b981' : 
+                            systemHealth >= 75 ? '#3b82f6' : 
+                            systemHealth >= 50 ? '#f59e0b' : '#ef4444',
+                            '#e5e7eb'
+                        ],
+                        borderWidth: 0,
+                        cutout: '70%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: [{
+                    id: 'healthGaugeText',
+                    beforeDraw: function(chart) {
+                        const ctx = chart.ctx;
+                        const centerX = chart.chartArea.left + (chart.chartArea.right - chart.chartArea.left) / 2;
+                        const centerY = chart.chartArea.top + (chart.chartArea.bottom - chart.chartArea.top) / 2;
+                        
+                        ctx.save();
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.font = 'bold 24px Arial';
+                        ctx.fillStyle = systemHealth >= 90 ? '#10b981' : 
+                                       systemHealth >= 75 ? '#3b82f6' : 
+                                       systemHealth >= 50 ? '#f59e0b' : '#ef4444';
+                        ctx.fillText(Math.round(systemHealth) + '%', centerX, centerY);
+                        
+                        // Add status text
+                        ctx.font = '12px Arial';
+                        ctx.fillStyle = '#6b7280';
+                        const statusText = systemHealth >= 90 ? 'Mükemmel' : 
+                                         systemHealth >= 75 ? 'İyi' : 
+                                         systemHealth >= 50 ? 'Uyarı' : 'Kritik';
+                        ctx.fillText(statusText, centerX, centerY + 25);
+                        ctx.restore();
+                    }
+                }]
+            });
+
+            // Update statistics in the UI
+            updateStatisticsDisplay(data);
+        }
+        
+        // Get dashboard data from JSON script tag
+        function getMockData() {
+            try {
+                const dataScript = document.getElementById('dashboard-data');
+                return JSON.parse(dataScript.textContent);
+            } catch (error) {
+                console.error('Error parsing dashboard data:', error);
+                // Fallback data
+                return {
+                    url_count: 125,
+                    email_count: 89,
+                    file_count: 67,
+                    safe_count: 234,
+                    low_risk: 32,
+                    medium_risk: 12,
+                    high_risk: 3,
+                    timeline_labels: ['1 Haf', '2 Haf', '3 Haf', '4 Haf', '5 Haf', '6 Haf', '7 Haf'],
+                    timeline_data: [12, 19, 8, 15, 22, 18, 25],
+                    malware_detected: 5,
+                    phishing_detected: 8,
+                    spam_detected: 12,
+                    malicious_links: 3,
+                    system_health: 94
+                };
+            }
+        }
+        
+        // Initialize filters
+        function initializeFilters() {
+            const applyBtn = document.getElementById('applyFilters');
+            const resetBtn = document.getElementById('resetFilters');
+            
+            applyBtn.addEventListener('click', applyFilters);
+            resetBtn.addEventListener('click', resetFilters);
+        }
+        
+        // Reset all filters to default values
+        function resetFilters() {
+            console.log('Resetting filters to default values...');
+            
+            // Reset filter form values to default
+            document.getElementById('dateRange').value = '30';  // Son 30 Gün
+            document.getElementById('analysisType').value = 'all';  // Tümü
+            document.getElementById('riskLevel').value = 'all';    // Tümü
+            
+            // Show reset loading state
+            showResetLoadingState();
+            
+            // Apply filters with default values after a short delay for visual feedback
+            setTimeout(async () => {
+                try {
+                    const data = await fetchDashboardData();
+                    createCharts(data);
+                    hideResetLoadingState();
+                    
+                    // Show success message
+                    showFilterMessage('Filtreler sıfırlandı ve varsayılan veriler yüklendi', 'success');
+                } catch (error) {
+                    console.error('Reset filter error:', error);
+                    hideResetLoadingState();
+                    
+                    // Fallback to mock data on error
+                    const mockData = getMockData();
+                    createChartsFromMockData(mockData);
+                    showFilterMessage('Filtreler sıfırlandı (çevrimdışı veriler)', 'info');
+                }
+            }, 300);
+        }
+        
+        // Show reset loading state
+        function showResetLoadingState() {
+            const resetBtn = document.getElementById('resetFilters');
+            resetBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sıfırlanıyor...';
+            resetBtn.disabled = true;
+        }
+        
+        // Hide reset loading state
+        function hideResetLoadingState() {
+            const resetBtn = document.getElementById('resetFilters');
+            resetBtn.innerHTML = '<i class="fas fa-redo"></i> Sıfırla';
+            resetBtn.disabled = false;
+        }
+        
+        // Apply filters with real API call
+        async function applyFilters() {
+            const dateRange = document.getElementById('dateRange').value;
+            const analysisType = document.getElementById('analysisType').value;
+            const riskLevel = document.getElementById('riskLevel').value;
+            
+            console.log('Applying filters:', { dateRange, analysisType, riskLevel });
+            
+            // Show loading state
+            showLoadingState();
+            
+            try {
+                const data = await fetchDashboardData();
+                createCharts(data);
+                hideLoadingState();
+                
+                // Show success message
+                showFilterMessage(`Filtreler uygulandı: ${data.totalAnalyses || 0} analiz bulundu`, 'success');
+            } catch (error) {
+                console.error('Filter error:', error);
+                hideLoadingState();
+                showFilterMessage('Filtre uygulama hatası: ' + error.message, 'error');
+            }
+        }
+        
+        // Show loading state
+        function showLoadingState() {
+            const applyBtn = document.getElementById('applyFilters');
+            applyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Yükleniyor...';
+            applyBtn.disabled = true;
+        }
+        
+        // Hide loading state
+        function hideLoadingState() {
+            const applyBtn = document.getElementById('applyFilters');
+            applyBtn.innerHTML = '<i class="fas fa-search"></i> Filtrele';
+            applyBtn.disabled = false;
+        }
+        
+        // Update statistics display with real data
+        function updateStatisticsDisplay(data) {
+            // Update main counters if elements exist
+            const totalAnalysesEl = document.getElementById('totalAnalyses');
+            const urlCountEl = document.getElementById('urlCount');
+            const emailCountEl = document.getElementById('emailCount');
+            const fileCountEl = document.getElementById('fileCount');
+            
+            if (totalAnalysesEl) totalAnalysesEl.textContent = data.totalAnalyses || 0;
+            if (urlCountEl) urlCountEl.textContent = data.urlCount || 0;
+            if (emailCountEl) emailCountEl.textContent = data.emailCount || 0;
+            if (fileCountEl) fileCountEl.textContent = data.fileCount || 0;
+            
+            // Update quick stats if elements exist
+            const urlSafeEl = document.getElementById('urlSafe');
+            const urlRiskyEl = document.getElementById('urlRisky');
+            const emailSafeEl = document.getElementById('emailSafe');
+            const emailRiskyEl = document.getElementById('emailRisky');
+            const fileSafeEl = document.getElementById('fileSafe');
+            const fileRiskyEl = document.getElementById('fileRisky');
+            
+            if (urlSafeEl) urlSafeEl.textContent = data.urlSafe || 0;
+            if (urlRiskyEl) urlRiskyEl.textContent = data.urlRisky || 0;
+            if (emailSafeEl) emailSafeEl.textContent = data.emailSafe || 0;
+            if (emailRiskyEl) emailRiskyEl.textContent = data.emailRisky || 0;
+            if (fileSafeEl) fileSafeEl.textContent = data.fileSafe || 0;
+            if (fileRiskyEl) fileRiskyEl.textContent = data.fileRisky || 0;
+            
+            // Update hero stats
+            const activeScanCountEl = document.getElementById('activeScanCount');
+            const threatCountEl = document.getElementById('threatCount');
+            
+            if (activeScanCountEl) activeScanCountEl.textContent = data.totalAnalyses || 0;
+            if (threatCountEl) threatCountEl.textContent = data.threats.data.reduce((a, b) => a + b, 0) || 0;
+        }
+
+        // Show filter message
+        function showFilterMessage(message, type = 'info') {
+            // Remove existing message
+            const existingMessage = document.querySelector('.filter-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Create new message
+            const messageEl = document.createElement('div');
+            messageEl.className = `filter-message alert alert-${type} mt-3`;
+            messageEl.style.cssText = `
+                padding: 12px 16px;
+                border-radius: 8px;
+                font-size: 14px;
+                margin-top: 12px;
+                ${type === 'success' ? 'background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0;' : ''}
+                ${type === 'error' ? 'background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;' : ''}
+                ${type === 'info' ? 'background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd;' : ''}
+            `;
+            messageEl.textContent = message;
+            
+            // Add to filter section
+            const filterCard = document.querySelector('.filter-card');
+            if (filterCard) {
+                filterCard.appendChild(messageEl);
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (messageEl.parentNode) {
+                        messageEl.remove();
+                    }
+                }, 5000);
+            }
+        }
+
+        // Fallback chart creation with mock data
+        function createChartsFromMockData(mockData) {
+            const data = {
+                analysisTypes: {
+                    labels: ['URL Analizi', 'E-posta Analizi', 'Dosya Analizi'],
+                    data: [mockData.url_count, mockData.email_count, mockData.file_count],
+                    colors: ['#3b82f6', '#8b5cf6', '#f59e0b']
+                },
+                riskLevels: {
+                    labels: ['Güvenli', 'Düşük Risk', 'Orta Risk', 'Yüksek Risk'],
+                    data: [mockData.safe_count, mockData.low_risk, mockData.medium_risk, mockData.high_risk],
+                    colors: ['#10b981', '#f59e0b', '#f97316', '#ef4444']
+                },
+                timeline: {
+                    labels: mockData.timeline_labels,
+                    datasets: [{
+                        label: 'Günlük Analizler',
+                        data: mockData.timeline_data,
+                        color: '#3b82f6'
+                    }]
+                },
+                threats: {
+                    labels: ['Phishing', 'Malware', 'Spam', 'Şüpheli Link', 'Virüs'],
+                    data: [mockData.phishing_detected, mockData.malware_detected, mockData.spam_detected, mockData.malicious_links, 2],
+                    colors: ['#dc2626', '#ef4444', '#f59e0b', '#8b5cf6', '#6b7280']
+                },
+                systemHealth: {
+                    percentage: 94,  // Mock system health
+                    db_health: 100,
+                    ai_health: 95,
+                    analysis_health: 90
+                },
+                totalAnalyses: mockData.url_count + mockData.email_count + mockData.file_count,
+                urlCount: mockData.url_count,
+                emailCount: mockData.email_count,
+                fileCount: mockData.file_count,
+                urlSafe: Math.floor(mockData.url_count * 0.8),
+                urlRisky: Math.floor(mockData.url_count * 0.2),
+                emailSafe: Math.floor(mockData.email_count * 0.9),
+                emailRisky: Math.floor(mockData.email_count * 0.1),
+                fileSafe: Math.floor(mockData.file_count * 0.85),
+                fileRisky: Math.floor(mockData.file_count * 0.15)
+            };
+            
+            createCharts(data);
+        }
+        
+        // Update system health display with dynamic colors
+        function updateSystemHealth() {
+            const systemHealthValue = parseInt('{{ stats.system_health or 95 }}');
+            const systemHealthIcon = document.querySelector('.live-stat-card:last-of-type .live-stat-icon');
+            
+            if (systemHealthIcon) {
+                // Remove existing health classes
+                systemHealthIcon.classList.remove('system-health-excellent', 'system-health-good', 'system-health-warning', 'system-health-critical');
+                
+                // Add appropriate class based on health value
+                if (systemHealthValue >= 90) {
+                    systemHealthIcon.classList.add('system-health-excellent');
+                } else if (systemHealthValue >= 75) {
+                    systemHealthIcon.classList.add('system-health-good');
+                } else if (systemHealthValue >= 50) {
+                    systemHealthIcon.classList.add('system-health-warning');
+                } else {
+                    systemHealthIcon.classList.add('system-health-critical');
+                }
+            }
+        }
+
+        // Auto refresh every 30 seconds with real data
+        function startAutoRefresh() {
+            setInterval(async () => {
+                try {
+                    console.log('Auto-refreshing dashboard data...');
+                    const data = await fetchDashboardData();
+                    createCharts(data);
+                    updateSystemHealth(); // Update health colors
+                } catch (error) {
+                    console.error('Auto-refresh error:', error);
+                }
+            }, 30000);
+        }
+    </script>
+    
+    <script>
+        // Initialize page on load for dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Dashboard Page Loaded!');
+            
+            // Hide nav buttons for dashboard page
+            hideHomepageOnlyButtons();
+        });
+
+        // Navigation functions - Hide homepage-only buttons
+        function hideHomepageOnlyButtons() {
+            const liveFeedBtn = document.getElementById('navLiveFeedBtn');
+            const guideBtn = document.getElementById('navGuideBtn');
+            const mobileLiveFeedBtn = document.getElementById('mobileLiveFeedBtn');
+            const mobileGuideBtn = document.getElementById('mobileGuideBtn');
+            
+            // Hide homepage-only buttons
+            if (liveFeedBtn) liveFeedBtn.classList.add('hidden');
+            if (guideBtn) guideBtn.classList.add('hidden');
+            if (mobileLiveFeedBtn) mobileLiveFeedBtn.classList.add('hidden');
+            if (mobileGuideBtn) mobileGuideBtn.classList.add('hidden');
+        }
+    </script>
+
+    <!-- Footer -->
+    {% include 'components/footer.html' %}
+    
+
+{% endblock %}

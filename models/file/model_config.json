@@ -1,0 +1,91 @@
+{
+  "model_type": "FileSecurityNet",
+  "input_size": 50,
+  "num_classes": 2,
+  "feature_names": [
+    "F1",
+    "F257",
+    "F513",
+    "F514",
+    "F515",
+    "F612",
+    "F613",
+    "F614",
+    "F615",
+    "F616",
+    "F617",
+    "F618",
+    "F619",
+    "F620",
+    "F621",
+    "F622",
+    "F623",
+    "F624",
+    "F625",
+    "F626",
+    "F627",
+    "F633",
+    "F638",
+    "F640",
+    "F641",
+    "F642",
+    "F644",
+    "F645",
+    "F655",
+    "F656",
+    "F658",
+    "F659",
+    "F661",
+    "F666",
+    "F678",
+    "F679",
+    "F680",
+    "F681",
+    "F682",
+    "F684",
+    "F685",
+    "F686",
+    "F687",
+    "F688",
+    "F689",
+    "F690",
+    "F691",
+    "F692",
+    "F693",
+    "F694"
+  ],
+  "architecture": {
+    "hidden_layers": [
+      64,
+      32,
+      16
+    ],
+    "dropout_rates": [
+      0.3,
+      0.2,
+      0.0
+    ],
+    "activation": "ReLU"
+  },
+  "training_params": {
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "epochs": 50,
+    "optimizer": "Adam"
+  },
+  "performance": {
+    "test_accuracy": 0.5320000052452087,
+    "test_samples": 2000,
+    "confusion_matrix": [
+      [
+        416,
+        584
+      ],
+      [
+        352,
+        648
+      ]
+    ]
+  },
+  "created_with": "SecureLens File Analyzer v1.0"
+}

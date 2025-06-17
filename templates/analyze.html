@@ -1,0 +1,410 @@
+{% extends "base.html" %}
+
+{% block title %}Güvenlik Analizi - SecureLens{% endblock %}
+
+{% block content %}
+    <!-- Analysis Hero Section -->
+    <div class="hero-compact relative overflow-hidden">
+        <!-- Background -->
+        <div class="hero-bg absolute inset-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800"></div>
+        <div class="absolute inset-0 bg-black/20"></div>
+        
+        <!-- Subtle Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="floating-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Side - Title and Analysis Types -->
+                <div class="text-white">
+                    <div class="mb-6">
+                        <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                            <i class="fas fa-search mr-2"></i>
+                            Güvenlik Analiz Merkezi
+                        </span>
+            </div>
+            
+                    <h1 class="text-4xl font-bold mb-4">
+                        Güvenlik 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
+                            Analizi
+                        </span>
+                    </h1>
+                    
+                    <p class="text-lg text-slate-300 leading-relaxed mb-8">
+                        AI destekli hibrit analiz sistemi ile URL, e-posta ve dosyalarınızı 
+                        güvenlik açısından gerçek zamanlı kontrol edin.
+                    </p>
+                    
+                    <!-- Analysis Type Selector -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-white mb-4">Analiz Türü Seçin:</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <button class="analysis-tab active" data-type="url">
+                                <div class="tab-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                                <span class="tab-text">URL Analizi</span>
+                            </button>
+                            <button class="analysis-tab" data-type="email">
+                                <div class="tab-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <span class="tab-text">E-posta Analizi</span>
+                            </button>
+                            <button class="analysis-tab" data-type="file">
+                                <div class="tab-icon">
+                                    <i class="fas fa-file-shield"></i>
+                                </div>
+                                <span class="tab-text">Dosya Analizi</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature List -->
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                            <span class="text-slate-300">Gerçek zamanlı AI analizi</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                            <span class="text-slate-300">Hibrit güvenlik tarama sistemi</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                            <span class="text-slate-300">Detaylı tehdit raporlaması</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Security Tips -->
+                <div class="security-tips-panel">
+                    <!-- Header -->
+                    <div class="tips-header mb-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center mr-3">
+                                <i class="fas fa-lightbulb text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Güvenlik Önerileri</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm">Siber güvenliğinizi artırmak için önemli ipuçları</p>
+                    </div>
+                    
+                    <!-- Tips List -->
+                    <div class="tips-list space-y-4">
+                        <!-- Tip 1 -->
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4 class="tip-title">Güvenilir Kaynaklardan İndirin</h4>
+                                <p class="tip-description">Dosyaları sadece resmi web sitelerinden ve güvenilir kaynaklardan indirin.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tip 2 -->
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4 class="tip-title">URL'leri Dikkatli İnceleyin</h4>
+                                <p class="tip-description">Şüpheli bağlantılara tıklamadan önce URL'yi kontrol edin ve doğruluğunu teyit edin.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tip 3 -->
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4 class="tip-title">E-posta Eklerini Tarayın</h4>
+                                <p class="tip-description">Bilinmeyen gönderenlerden gelen e-posta eklerini açmadan önce analiz edin.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tip 4 -->
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4 class="tip-title">Düzenli Güvenlik Taraması</h4>
+                                <p class="tip-description">Sisteminizdeki dosyaları düzenli olarak güvenlik açısından kontrol edin.</p>
+                </div>
+            </div>
+            
+                        <!-- Tip 5 -->
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-user-shield"></i>
+                        </div>
+                            <div class="tip-content">
+                                <h4 class="tip-title">Kişisel Bilgileri Koruyun</h4>
+                                <p class="tip-description">Hassas bilgilerinizi paylaşmadan önce karşı tarafın güvenilirliğini doğrulayın.</p>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="quick-stats mt-6 pt-6 border-t border-white/20">
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div class="stat-item">
+                                <div class="stat-number text-cyan-300 font-bold text-lg">3</div>
+                                <div class="stat-label text-slate-400 text-xs">AI Model</div>
+                </div>
+                            <div class="stat-item">
+                                <div class="stat-number text-green-300 font-bold text-lg">98.7%</div>
+                                <div class="stat-label text-slate-400 text-xs">Doğruluk</div>
+                        </div>
+                            <div class="stat-item">
+                                <div class="stat-number text-purple-300 font-bold text-lg">2.3s</div>
+                                <div class="stat-label text-slate-400 text-xs">Hız</div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 analyze-page-main-content" style="background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%) !important;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="analysis-form-container-modern">
+                
+                <!-- URL Analysis Form -->
+                <div class="analysis-form active" id="urlForm">
+                    <div class="form-header mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">URL Güvenlik Analizi</h3>
+                        <p class="text-gray-600">Web sitesinin güvenlik durumunu kontrol edin</p>
+                    </div>
+                    
+                    <form class="space-y-6" onsubmit="return false;">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Web Sitesi URL'si
+                            </label>
+                            <div class="relative">
+                                <input type="url" 
+                                       class="analysis-input" 
+                                       placeholder="https://example.com"
+                                       id="urlInput">
+                                <div class="input-icon">
+                                    <i class="fas fa-globe text-blue-500"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="analyze-btn" onclick="performAnalysis('url', event)">
+                            <i class="fas fa-search"></i>
+                            <span>URL Analiz Et</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Email Analysis Form -->
+                <div class="analysis-form" id="emailForm">
+                    <div class="form-header mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">E-posta Güvenlik Analizi</h3>
+                        <p class="text-gray-600">E-posta içeriğini ve meta verilerini güvenlik açısından kontrol edin</p>
+                        <div class="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-blue-500 mt-0.5 mr-2"></i>
+                                <div class="text-sm text-blue-700">
+                                    <strong>İpucu:</strong> E-posta içeriği zorunlu, gönderen adresi ve konu opsiyoneldir. 
+                                    Daha fazla bilgi eklerseniz daha detaylı analiz yapılır.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="space-y-6" onsubmit="return false;">
+                        <!-- Gönderen E-posta Adresi (Opsiyonel) -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-user mr-1"></i>
+                                Gönderen E-posta Adresi (Opsiyonel)
+                            </label>
+                            <div class="relative">
+                                <input type="email" 
+                                       class="analysis-input" 
+                                       placeholder="örnek: sender@example.com"
+                                       id="emailSenderInput">
+                                <div class="input-icon">
+                                    <i class="fas fa-at text-blue-500"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Gönderen adresini eklerseniz domain analizi de yapılır</p>
+                        </div>
+
+                        <!-- E-posta Konusu (Opsiyonel) -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-tag mr-1"></i>
+                                E-posta Konusu (Opsiyonel)
+                            </label>
+                            <div class="relative">
+                                <input type="text" 
+                                       class="analysis-input" 
+                                       placeholder="E-posta konusunu buraya yazın..."
+                                       id="emailSubjectInput">
+                                <div class="input-icon">
+                                    <i class="fas fa-heading text-blue-500"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Konu satırı phishing tespiti için analiz edilir</p>
+                        </div>
+
+                        <!-- E-posta İçeriği (Zorunlu) -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-envelope-open-text mr-1"></i>
+                                E-posta İçeriği (Zorunlu)
+                            </label>
+                            <textarea class="analysis-textarea" 
+                                      rows="8" 
+                                      placeholder="E-posta içeriğini buraya yapıştırın..."
+                                      id="emailInput"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">
+                                <i class="fas fa-lightbulb mr-1 text-yellow-500"></i>
+                                HTML formatında e-posta içeriği de desteklenir
+                            </p>
+                        </div>
+                        
+                        <button type="button" class="analyze-btn" onclick="performAnalysis('email', event)">
+                            <i class="fas fa-search"></i>
+                            <span>E-posta Analiz Et</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- File Analysis Form -->
+                <div class="analysis-form" id="fileForm">
+                    <div class="form-header mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Dosya Güvenlik Analizi</h3>
+                        <p class="text-gray-600">Dosya adı ve içeriğini AI ile analiz ederek güvenlik risklerini değerlendirin</p>
+                        <div class="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-blue-500 mt-0.5 mr-2"></i>
+                                <div class="text-sm text-blue-700">
+                                    <strong>İpucu:</strong> Dosya adı zorunlu, dosya içeriği opsiyoneldir. 
+                                    AI, dosya uzantısı, adı ve içeriğinden güvenlik risklerini tespit eder.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="space-y-6" onsubmit="return false;">
+                        <!-- Dosya Adı -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-file-alt mr-1"></i>
+                                Dosya Adı (Zorunlu)
+                            </label>
+                            <div class="relative">
+                                <input type="text" 
+                                       class="analysis-input" 
+                                       placeholder="örnek: document.pdf, script.exe, image.jpg"
+                                       id="fileNameInput">
+                                <div class="input-icon">
+                                    <i class="fas fa-file text-blue-500"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Dosya uzantısı ile birlikte tam adını yazın</p>
+                        </div>
+
+                        <!-- Dosya İçeriği (Opsiyonel) -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-file-code mr-1"></i>
+                                Dosya İçeriği (Opsiyonel)
+                            </label>
+                            <textarea class="analysis-textarea" 
+                                      rows="6" 
+                                      placeholder="Dosya içeriğini buraya yapıştırabilirsiniz (opsiyonel)..."
+                                      id="fileContentInput"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">
+                                <i class="fas fa-lightbulb mr-1 text-yellow-500"></i>
+                                Dosya içeriği eklerseniz daha detaylı analiz yapılır
+                            </p>
+                        </div>
+
+
+                        
+                        <button type="button" class="analyze-btn" onclick="performAnalysis('file', event)">
+                            <i class="fas fa-search"></i>
+                            <span>Dosya Analiz Et</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Analysis Results (Below Form) -->
+            <div class="analysis-results-main" id="analysisResults" style="display: none;">
+                <div id="resultsContent">
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%);">
+        {% include 'components/footer.html' %}
+    </div>
+
+
+{% endblock %}
+
+{% block extra_head %}
+<!-- PDF Generation Libraries - Only for Analyze Page -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+{% endblock %}
+
+{% block extra_js %}
+<!-- JavaScript Files -->
+<script src="{{ url_for('static', filename='js/core.js') }}?v=1.0.0"></script>
+<script src="{{ url_for('static', filename='js/analyze.js') }}?v=1.0.0"></script>
+
+<script>
+    // Initialize page on load
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Analyze Page Loaded!');
+        
+        // Hide nav buttons for analyze page
+        hideHomepageOnlyButtons();
+    });
+
+    // Navigation functions - Hide homepage-only buttons
+    function hideHomepageOnlyButtons() {
+        const liveFeedBtn = document.getElementById('navLiveFeedBtn');
+        const guideBtn = document.getElementById('navGuideBtn');
+        const mobileLiveFeedBtn = document.getElementById('mobileLiveFeedBtn');
+        const mobileGuideBtn = document.getElementById('mobileGuideBtn');
+        
+        // Hide homepage-only buttons
+        if (liveFeedBtn) liveFeedBtn.classList.add('hidden');
+        if (guideBtn) guideBtn.classList.add('hidden');
+        if (mobileLiveFeedBtn) mobileLiveFeedBtn.classList.add('hidden');
+        if (mobileGuideBtn) mobileGuideBtn.classList.add('hidden');
+    }
+</script>
+
+{% endblock %} 

@@ -1,0 +1,6 @@
+{
+  "best_threshold": 0.5,
+  "model_path": "models/url/url_detection_model.pt",
+  "tokenizer_path": "models/url/tokenizer",
+  "updated_at": "2025-01-18T12:00:00.000000"
+} 

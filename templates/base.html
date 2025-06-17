@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="tr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SecureLens - Hybrid AI Security Platform{% endblock %}</title>
+    
+    <!-- Favicon - Animasyonlu SecureLens Logo -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+    <link rel="alternate icon" href="{{ url_for('static', filename='images/favicon-static.svg') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='images/favicon-static.svg') }}" color="#3b82f6">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon-static.svg') }}">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="SecureLens"
+    
+    <!-- Page Transition Meta -->
+    <meta name="page-id" content="{{ page_id or 'unknown' }}">
+    <meta name="cache-buster" content="{{ cache_buster or '1.0.0' }}">
+    
+    <!-- Critical CSS - Blocking -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v={{ cache_buster or '1.0.0' }}">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- External Libraries - Optimized -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Fonts - Critical First -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+    
+    <!-- Tailwind Config - Inline for speed -->
+    <script>
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        animation: {
+                            'spin-slow': 'spin 3s linear infinite',
+                            'spin-reverse': 'spin 2s linear infinite reverse',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="h-full bg-gray-50" data-page-id="{{ page_id or 'unknown' }}">
+    <!-- Navigation -->
+    {% include 'components/navigation.html' %}
+    
+    <!-- Page Loading Overlay - Always Present Initially -->
+    <div id="initial-page-overlay" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div class="flex flex-col items-center space-y-6">
+            <div class="relative">
+                <!-- SecureLens Logo Animation -->
+                <div class="w-16 h-16 relative">
+                    <div class="absolute inset-0 border-4 border-blue-100 rounded-full"></div>
+                    <div class="absolute inset-0 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                    <div class="absolute inset-2 border-2 border-blue-300 border-r-transparent rounded-full animate-spin-reverse"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-blue-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="text-gray-800 font-semibold text-lg mb-1">Sayfa Hazırlanıyor</div>
+                <div class="text-gray-500 text-sm">Lütfen bekleyiniz...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="min-h-screen page-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Global Guide Modal - Available on All Pages -->
+    <div id="guideModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <!-- Header -->
+            <div class="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white p-6 rounded-t-2xl">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">SecureLens Rehber</h2>
+                            <p class="text-blue-100">Hybrid AI Güvenlik Analiz Platformu</p>
+                        </div>
+                    </div>
+                    <button onclick="closeGuideModal()" class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6 space-y-6">
+                <!-- About Section -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-info-circle text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">SecureLens Nedir?</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                SecureLens, yapay zeka destekli hibrit güvenlik analiz platformudur. URL'ler, e-postalar ve dosyalar için 
+                                gerçek zamanlı güvenlik analizi sağlar. Gelişmiş AI algoritmaları ile tehditleri tespit eder ve 
+                                kullanıcıları siber saldırılara karşı korur.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- URL Analysis -->
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-globe text-white text-sm"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">URL Analizi</h4>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-600 text-sm"></i>
+                                <span>Phishing siteleri tespiti</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-600 text-sm"></i>
+                                <span>Malware içerik kontrolü</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-600 text-sm"></i>
+                                <span>Domain güvenilirlik analizi</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-600 text-sm"></i>
+                                <span>SSL sertifika kontrolü</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Email Analysis -->
+                    <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-envelope text-white text-sm"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">E-posta Analizi</h4>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-purple-600 text-sm"></i>
+                                <span>Spam e-posta tespiti</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-purple-600 text-sm"></i>
+                                <span>Sosyal mühendislik analizi</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-purple-600 text-sm"></i>
+                                <span>Şüpheli ek kontrolü</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-purple-600 text-sm"></i>
+                                <span>Gönderen doğrulaması</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- File Analysis -->
+                    <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-file-shield text-white text-sm"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">Dosya Analizi</h4>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-orange-600 text-sm"></i>
+                                <span>Virüs tarama</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-orange-600 text-sm"></i>
+                                <span>Zararlı kod tespiti</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-orange-600 text-sm"></i>
+                                <span>Dosya bütünlüğü kontrolü</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-orange-600 text-sm"></i>
+                                <span>Metadata analizi</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- AI Technology -->
+                    <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl p-6">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-brain text-white text-sm"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">AI Teknolojisi</h4>
+                        </div>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-indigo-600 text-sm"></i>
+                                <span>Makine öğrenmesi</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-indigo-600 text-sm"></i>
+                                <span>Doğal dil işleme</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-indigo-600 text-sm"></i>
+                                <span>Davranış analizi</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-indigo-600 text-sm"></i>
+                                <span>Gerçek zamanlı öğrenme</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Usage Guide -->
+                <div class="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-play text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Nasıl Kullanılır?</h3>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <span class="text-white font-bold">1</span>
+                                    </div>
+                                    <h5 class="font-semibold text-gray-900 mb-2">Analiz Türü Seç</h5>
+                                    <p class="text-sm text-gray-600">URL, e-posta veya dosya analizi seçin</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <span class="text-white font-bold">2</span>
+                                    </div>
+                                    <h5 class="font-semibold text-gray-900 mb-2">İçerik Girin</h5>
+                                    <p class="text-sm text-gray-600">Analiz edilecek içeriği girin veya yükleyin</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <span class="text-white font-bold">3</span>
+                                    </div>
+                                    <h5 class="font-semibold text-gray-900 mb-2">Sonuçları İncele</h5>
+                                    <p class="text-sm text-gray-600">AI analiz sonuçlarını ve önerileri görün</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Info -->
+                <div class="bg-gradient-to-br from-cyan-50 to-teal-50 rounded-xl p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-cogs text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Teknik Özellikler</h3>
+                            <div class="grid md:grid-cols-2 gap-4 text-gray-700">
+                                <div>
+                                    <h5 class="font-semibold mb-2">Backend Teknolojileri:</h5>
+                                    <ul class="space-y-1 text-sm">
+                                        <li>• Python Flask Framework</li>
+                                        <li>• PyTorch AI Engine</li>
+                                        <li>• MongoDB Atlas Database</li>
+                                        <li>• Real-time Processing</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold mb-2">Frontend Teknolojileri:</h5>
+                                    <ul class="space-y-1 text-sm">
+                                        <li>• Modern HTML5 & CSS3</li>
+                                        <li>• Tailwind CSS Framework</li>
+                                        <li>• Vanilla JavaScript</li>
+                                        <li>• Responsive Design</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact & Version -->
+                <div class="border-t pt-6 text-center">
+                    <div class="flex items-center justify-center space-x-6 text-gray-600">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-code text-blue-600"></i>
+                            <span class="text-sm">Version 1.0.0</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-calendar text-green-600"></i>
+                            <span class="text-sm">2024</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-shield-check text-purple-600"></i>
+                            <span class="text-sm">AI Powered</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm mt-4">
+                        SecureLens - Her türlü güvenlik analizi ihtiyacınız için geliştirilmiş hibrit AI platformu
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Core JavaScript - Cached -->
+    <script src="{{ url_for('static', filename='js/core.js') }}?v=1.0.0" defer></script>
+    
+    <!-- Page Specific JavaScript -->
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Scripts Block -->
+    {% block scripts %}{% endblock %}
+</body>
+</html> 
